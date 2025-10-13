@@ -7,8 +7,8 @@ contract TestABContract {
     string public name;
     string public symbol;
     uint256 private _tokenIds;
-    string private version = "1.0.0";
-    
+    string private version = "1.0.3";
+
     struct Badge {
         string badgeName;
         string description;
