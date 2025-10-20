@@ -17,12 +17,16 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         uint8 rarity; // 1=Common, 2=Rare, 3=Epic, 4=Legendary
         bool soulbound;
     }
-    
+
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
         Ownable(initialOwner)
     {
         // Start token IDs at 1
         _tokenIds = 1;
+    }
+
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721URIStorage) returns (bool) {
+        return super.supportsInterface(interfaceId);
     }
 }
