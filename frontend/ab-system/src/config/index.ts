@@ -1,5 +1,6 @@
+// ./src/config/index.ts
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { mainnet, base, arbitrum } from '@reown/appkit/networks'
+import { base, celo, mainnet, arbitrum } from '@reown/appkit/networks'
 import type { AppKitNetwork } from '@reown/appkit/networks'
 
 // Get projectId from https://dashboard.reown.com
@@ -9,7 +10,7 @@ if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const networks = [mainnet, base, arbitrum] as [AppKitNetwork, ...AppKitNetwork[]]
+export const networks = [base, celo, mainnet, arbitrum] as [AppKitNetwork, ...AppKitNetwork[]]
 
 //Set up the Wagmi Adapter (Config)
 export const wagmiAdapter = new WagmiAdapter({

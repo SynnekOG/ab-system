@@ -1,6 +1,5 @@
+// ./src/layout.tsx
 import type { Metadata } from "next";
-
-
 import { headers } from 'next/headers' // added
 import './globals.css';
 import ContextProvider from '@/context'
