@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   webpack: config => {
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
     
-    // Add fallbacks for Node.js modules
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -13,7 +12,6 @@ const nextConfig: NextConfig = {
       crypto: false,
     };
     
-    // Ignore React Native modules in browser environment
     config.resolve.alias = {
       ...config.resolve.alias,
       '@react-native-async-storage/async-storage': false,
@@ -21,7 +19,10 @@ const nextConfig: NextConfig = {
     };
     
     return config;
-  }
+  },
+  
+  // Add this if you're having issues with CSS
+  transpilePackages: ['@reown/appkit', '@reown/appkit-adapter-wagmi'],
 };
 
 export default nextConfig;
