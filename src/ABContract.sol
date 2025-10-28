@@ -38,6 +38,9 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
 
    event AchievementManagerUpdated(address indexed oldManager, address indexed newManager);
 
+    event TokenURIUpdated(uint256 indexed achievementId, string newURI);
+
+
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
         Ownable(initialOwner)
