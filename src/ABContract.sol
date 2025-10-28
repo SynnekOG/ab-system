@@ -24,6 +24,9 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
     // Mapping from user address to list of their badge token IDs
     mapping(address => uint256[]) public userBadges;
 
+    // Mapping from achievement ID to badge token URI
+    mapping(uint256 => string) public achievementTokenURIs;
+    
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
         Ownable(initialOwner)
