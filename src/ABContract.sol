@@ -32,7 +32,11 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
 
         // Address of the AchievementManager contract (only this can mint badges)
     address public achievementManager;
-    
+
+        // Events
+    event BadgeMinted(address indexed to, uint256 indexed tokenId, uint256 indexed achievementId);
+
+
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
         Ownable(initialOwner)
