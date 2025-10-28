@@ -29,6 +29,9 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
 
         // Mapping to track if user has earned specific achievement
     mapping(address => mapping(uint256 => bool)) public hasEarnedAchievement;
+
+        // Address of the AchievementManager contract (only this can mint badges)
+    address public achievementManager;
     
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
