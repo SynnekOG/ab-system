@@ -24,6 +24,27 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
     // Mapping from user address to list of their badge token IDs
     mapping(address => uint256[]) public userBadges;
 
+    // Mapping from achievement ID to badge token URI
+    mapping(uint256 => string) public achievementTokenURIs;
+
+    // Mapping to track if user has earned specific achievement
+    mapping(address => mapping(uint256 => bool)) public hasEarnedAchievement;
+
+    // Address of the AchievementManager contract (only this can mint badges)
+    address public achievementManager;
+
+    // Events
+    event BadgeMinted(address indexed to, uint256 indexed tokenId, uint256 indexed achievementId);
+
+    event AchievementManagerUpdated(address indexed oldManager, address indexed newManager);
+
+    event TokenURIUpdated(uint256 indexed achievementId, string newURI);
+
+    modifier onlyAchievementManager() {
+        require(msg.sender == achievementManager, "AchievementBadge: caller is not the achievement manager");
+        _;
+    }
+
     constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
         Ownable(initialOwner)
