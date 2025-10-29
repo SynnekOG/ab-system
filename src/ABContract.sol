@@ -73,6 +73,48 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         emit TokenURIUpdated(achievementId, tokenURI);
     }
 
+    function mintBadge(
+        address to,
+        uint256 achievementId,
+        string memory name,
+        string memory description,
+        uint8 rarity,
+        bool soulbound
+    ) external onlyAchievementManager returns (uint256) {
+        require(to != address(0), "AchievementBadge: mint to zero address");
+        require(!hasEarnedAchievement[to][achievementId], "AchievementBadge: achievement already earned");
+        require(rarity >= 1 && rarity <= 4, "AchievementBadge: invalid rarity");
+
+        _tokenIds++;
+        uint256 tokenId = _tokenIds;
+
+        // Mint the token
+        _safeMint(to, tokenId);
+
+        // Set token URI if available
+        string memory tokenURI = achievementTokenURIs[achievementId];
+        if (bytes(tokenURI).length > 0) {
+            _setTokenURI(tokenId, tokenURI);
+        }
+
+        // Store badge metadata
+        badgeMetadata[tokenId] = BadgeMetadata({
+            name: name,
+            description: description,
+            achievementId: achievementId,
+            earnedTimestamp: block.timestamp,
+            rarity: rarity,
+            soulbound: soulbound
+        });
+
+        // Update user's badge list
+        userBadges[to].push(tokenId);
+        hasEarnedAchievement[to][achievementId] = true;
+
+        emit BadgeMinted(to, tokenId, achievementId);
+        return tokenId;
+    }
+    
     // Override required by Solidity for multiple inheritance
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         return super.tokenURI(tokenId);
