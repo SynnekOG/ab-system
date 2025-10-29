@@ -53,6 +53,10 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         _tokenIds = 1;
     }
 
+    /**
+     * @dev Set the achievement manager contract address
+     * @param _achievementManager Address of the AchievementManager contract
+     */
         function setAchievementManager(address _achievementManager) external onlyOwner {
         address oldManager = achievementManager;
         achievementManager = _achievementManager;
