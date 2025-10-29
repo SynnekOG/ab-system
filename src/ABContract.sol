@@ -63,11 +63,16 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         emit AchievementManagerUpdated(oldManager, _achievementManager);
     }
 
+    /**
+     * @dev Set token URI for a specific achievement ID
+     * @param achievementId The achievement ID
+     * @param tokenURI The metadata URI
+     */
     function setAchievementTokenURI(uint256 achievementId, string memory tokenURI) external onlyOwner {
         achievementTokenURIs[achievementId] = tokenURI;
         emit TokenURIUpdated(achievementId, tokenURI);
     }
-    
+
     // Override required by Solidity for multiple inheritance
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         return super.tokenURI(tokenId);
