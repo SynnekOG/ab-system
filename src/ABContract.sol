@@ -73,6 +73,15 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         emit TokenURIUpdated(achievementId, tokenURI);
     }
 
+    /**
+     * @dev Mint a badge to a user (only callable by AchievementManager)
+     * @param to Address to mint the badge to
+     * @param achievementId The achievement ID this badge represents
+     * @param name Name of the badge
+     * @param description Description of the badge
+     * @param rarity Rarity level (1-4)
+     * @param soulbound Whether the badge is soul-bound (non-transferable)
+     */
     function mintBadge(
         address to,
         uint256 achievementId,
@@ -114,7 +123,7 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         emit BadgeMinted(to, tokenId, achievementId);
         return tokenId;
     }
-    
+
     // Override required by Solidity for multiple inheritance
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         return super.tokenURI(tokenId);
