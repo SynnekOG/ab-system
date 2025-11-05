@@ -133,6 +133,11 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         return userBadges[user];
     }
 
+    /**
+     * @dev Get badge count for a user
+     * @param user User address
+     * @return Number of badges owned
+     */
         function getUserBadgeCount(address user) external view returns (uint256) {
         return userBadges[user].length;
     }
