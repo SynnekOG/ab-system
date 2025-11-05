@@ -124,6 +124,10 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         return tokenId;
     }
 
+    function getUserBadges(address user) external view returns (uint256[] memory) {
+        return userBadges[user];
+    }
+
     // Override required by Solidity for multiple inheritance
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         return super.tokenURI(tokenId);
