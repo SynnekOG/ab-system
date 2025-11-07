@@ -152,6 +152,9 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         return hasEarnedAchievement[user][achievementId];
     }
 
+    /**
+     * @dev Override transfer functions to respect soul-bound badges
+     */
         function transferFrom(address from, address to, uint256 tokenId) public override(ERC721, IERC721) {
         require(!badgeMetadata[tokenId].soulbound, "AchievementBadge: token is soul-bound");
         super.transferFrom(from, to, tokenId);
