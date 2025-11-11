@@ -163,6 +163,28 @@ contract ABContract is ERC721, ERC721URIStorage, Ownable {
         userBadges[to].push(tokenId);
     }
 
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data)
+        public
+        override(ERC721, IERC721)
+    {
+        require(!badgeMetadata[tokenId].soulbound, "AchievementBadge: token is soul-bound");
+        super.safeTransferFrom(from, to, tokenId, data);
+
+        _removeFromUserBadges(from, tokenId);
+        userBadges[to].push(tokenId);
+    }
+
+    function _removeFromUserBadges(address user, uint256 tokenId) private {
+        uint256[] storage badges = userBadges[user];
+        for (uint256 i = 0; i < badges.length; i++) {
+            if (badges[i] == tokenId) {
+                badges[i] = badges[badges.length - 1];
+                badges.pop();
+                break;
+            }
+        }
+    }
+
     // Override required by Solidity for multiple inheritance
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
         return super.tokenURI(tokenId);
