@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseAbi } from 'viem';
 
-const CONTRACT_ADDRESS = '0xYourContractAddressHere'; // Replace with your deployed contract address
+const CONTRACT_ADDRESS = '0x239Bf2aEaA0227befF5bC283f24b49B6C2DFf9BC'; // Replace with your deployed contract address
 
 const contractAbi = parseAbi([
   'function mintBadge(address to, uint256 achievementId, string badgeName, string description, uint8 rarity) returns (uint256)',
