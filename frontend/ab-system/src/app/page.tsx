@@ -3,6 +3,7 @@ import { ConnectButton } from "@/components/ConnectButton";
 import { InfoList } from "@/components/InfoList";
 import { ActionButtonList } from "@/components/ActionButtonList";
 import { SignMessage } from "@/components/SignMessage";
+import { MintBadge } from "@/components/MintBadge";
 import Image from 'next/image';
 
 export default function Home() {
@@ -169,7 +170,21 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="demo-grid">
+          <div className="demo-grid-three">
+            <div className="demo-card">
+              <div className="demo-card-header">
+                <h3>Mint Achievement Badge</h3>
+                <span className="demo-badge">On-Chain</span>
+              </div>
+              <p className="demo-description">
+                Mint an achievement badge directly to the blockchain. Permanent, 
+                verifiable proof of test completions and milestones.
+              </p>
+              <div className="demo-content">
+                <MintBadge />
+              </div>
+            </div>
+
             <div className="demo-card">
               <div className="demo-card-header">
                 <h3>Message Signing</h3>
