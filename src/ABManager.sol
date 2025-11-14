@@ -6,4 +6,4 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./ABContract.sol";
 import "./interface/IActivityTracker.sol";
 
-contract ABManager  {}
+contract ABManager {}
