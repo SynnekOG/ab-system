@@ -17,4 +17,12 @@ interface IActivityTracker {
      * @param value Value associated with the activity
      */
     function recordActivity(address user, bytes32 activityType, uint256 value) external;
+
+        /**
+     * @dev Get user's total count for a specific activity type
+     * @param user User address
+     * @param activityType Type of activity
+     * @return Total count of activities
+     */
+    function getUserActivityCount(address user, bytes32 activityType) external view returns (uint256);
 }
