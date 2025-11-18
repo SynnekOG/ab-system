@@ -10,7 +10,7 @@ interface IActivityTracker {
     event ActivityRecorded(address indexed user, bytes32 indexed activityType, uint256 value, uint256 timestamp);
     event UserStatsUpdated(address indexed user, bytes32 indexed statType, uint256 oldValue, uint256 newValue);
 
-        /**
+    /**
      * @dev Record a new activity for a user
      * @param user Address of the user
      * @param activityType Type of activity (hashed string)
@@ -18,7 +18,7 @@ interface IActivityTracker {
      */
     function recordActivity(address user, bytes32 activityType, uint256 value) external;
 
-        /**
+    /**
      * @dev Get user's total count for a specific activity type
      * @param user User address
      * @param activityType Type of activity
