@@ -34,7 +34,7 @@ interface IActivityTracker {
      */
     function getUserActivityValue(address user, bytes32 activityType) external view returns (uint256);
 
-    /**
+/**
      * @dev Get user's current streak for a specific activity type
      * @param user User address
      * @param activityType Type of activity
@@ -42,6 +42,12 @@ interface IActivityTracker {
      */
     function getUserStreak(address user, bytes32 activityType) external view returns (uint256);
 
+/**
+     * @dev Get user's last activity timestamp for a specific type
+     * @param user User address
+     * @param activityType Type of activity
+     * @return Timestamp of last activity
+     */
     function getLastActivityTimestamp(address user, bytes32 activityType) external view returns (uint256);
 
 }
