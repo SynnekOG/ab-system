@@ -49,4 +49,27 @@ interface IActivityTracker {
      * @return Timestamp of last activity
      */
     function getLastActivityTimestamp(address user, bytes32 activityType) external view returns (uint256);
+
+    /**
+     * @dev Check if user has been active in the last X seconds
+     * @param user User address
+     * @param activityType Type of activity
+     * @param timeWindow Time window in seconds
+     * @return True if user was active within timeframe
+     */
+    function isUserActiveWithin(address user, bytes32 activityType, uint256 timeWindow) external view returns (bool);
+
+    /**
+     * @dev Get comprehensive user statistics
+     * @param user User address
+     * @param activityType Type of activity
+     * @return count Total activity count
+     * @return value Total activity value
+     * @return streak Current streak
+     * @return lastTimestamp Last activity timestamp
+     */
+    function getUserStats(address user, bytes32 activityType)
+        external
+        view
+        returns (uint256 count, uint256 value, uint256 streak, uint256 lastTimestamp);
 }
