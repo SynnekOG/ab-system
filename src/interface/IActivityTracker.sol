@@ -57,7 +57,7 @@ interface IActivityTracker {
      * @param timeWindow Time window in seconds
      * @return True if user was active within timeframe
      */
-        function isUserActiveWithin(address user, bytes32 activityType, uint256 timeWindow) external view returns (bool);
+    function isUserActiveWithin(address user, bytes32 activityType, uint256 timeWindow) external view returns (bool);
 
     /**
      * @dev Get comprehensive user statistics
