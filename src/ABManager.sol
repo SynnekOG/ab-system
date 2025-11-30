@@ -11,11 +11,10 @@ import "./interface/IActivityTracker.sol";
  * @dev Central manager for all achievements and badge minting
  */
 contract ABManager is Ownable, ReentrancyGuard {
-        uint256 private _achievementIdCounter;
+    uint256 private _achievementIdCounter;
 
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
     }
-
 }
