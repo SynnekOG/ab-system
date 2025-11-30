@@ -6,4 +6,8 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./ABContract.sol";
 import "./interface/IActivityTracker.sol";
 
+/**
+ * @title ABManager
+ * @dev Central manager for all achievements and badge minting
+ */
 contract ABManager {}
