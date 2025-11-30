@@ -10,4 +10,4 @@ import "./interface/IActivityTracker.sol";
  * @title ABManager
  * @dev Central manager for all achievements and badge minting
  */
-contract ABManager {}
+contract ABManager is Ownable, ReentrancyGuard {}
