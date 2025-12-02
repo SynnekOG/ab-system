@@ -23,7 +23,7 @@ contract ABManager is Ownable, ReentrancyGuard {
 
     }
 
-        // Achievement structure
+    // Achievement structure
     struct Achievement {
         uint256 id;
         string name;
@@ -39,7 +39,7 @@ contract ABManager is Ownable, ReentrancyGuard {
         uint256 currentEarners; // Current number of users who earned it
     }
 
-        // Reference to the badge contract
+    // Reference to the badge contract
     ABContract public badgeContract;
 
     // Array of all achievement IDs
@@ -57,7 +57,7 @@ contract ABManager is Ownable, ReentrancyGuard {
     // Mapping to track authorized activity trackers
     mapping(address => bool) public authorizedTrackers;
 
-        // Events
+    // Events
     event AchievementCreated(uint256 indexed achievementId, string name, AchievementType achievementType);
     event AchievementUpdated(uint256 indexed achievementId);
     event ProgressUpdated(address indexed user, uint256 indexed achievementId, uint256 progress);
@@ -74,13 +74,13 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @dev Set the badge contract address
      * @param _badgeContract Address of the AchievementBadge contract
      */
-        function setBadgeContract(address _badgeContract) external onlyOwner {
+    function setBadgeContract(address _badgeContract) external onlyOwner {
         address oldContract = address(badgeContract);
-        badgeContract = AchievementBadge(_badgeContract);
+        badgeContract = ABContract(_badgeContract);
         emit BadgeContractUpdated(oldContract, _badgeContract);
     }
 
-        function setTrackerAuthorization(address tracker, bool authorized) external onlyOwner {
+    function setTrackerAuthorization(address tracker, bool authorized) external onlyOwner {
         authorizedTrackers[tracker] = authorized;
         emit TrackerAuthorized(tracker, authorized);
     }
