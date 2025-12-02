@@ -39,6 +39,12 @@ contract ABManager is Ownable, ReentrancyGuard {
         uint256 currentEarners; // Current number of users who earned it
     }
 
+        // Reference to the badge contract
+    ABContract public badgeContract;
+
+    // Array of all achievement IDs
+    uint256[] public allAchievementIds;
+
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
