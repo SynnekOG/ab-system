@@ -13,6 +13,16 @@ import "./interface/IActivityTracker.sol";
 contract ABManager is Ownable, ReentrancyGuard {
     uint256 private _achievementIdCounter;
 
+    // Achievement types
+    enum AchievementType {
+        ACTIVITY_COUNT, // Complete X activities
+        VALUE_THRESHOLD, // Reach X value in activities
+        STREAK, // Complete activities X days in a row
+        COMBO, // Complete multiple different activities
+        TIME_BASED // Complete activity within timeframe
+
+    }
+    
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
