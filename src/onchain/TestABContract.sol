@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 /// @title TestABContract
 /// @notice A minimal badge contract focusing on minting functionality
@@ -7,7 +7,7 @@ contract TestABContract {
     string public name;
     string public symbol;
     uint256 private _tokenIds;
-    string private version = "1.0.14";
+    string private version = "1.0.16";
 
     struct Badge {
         string badgeName;
