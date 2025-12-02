@@ -56,7 +56,15 @@ contract ABManager is Ownable, ReentrancyGuard {
 
     // Mapping to track authorized activity trackers
     mapping(address => bool) public authorizedTrackers;
-    
+
+        // Events
+    event AchievementCreated(uint256 indexed achievementId, string name, AchievementType achievementType);
+    event AchievementUpdated(uint256 indexed achievementId);
+    event ProgressUpdated(address indexed user, uint256 indexed achievementId, uint256 progress);
+    event AchievementCompleted(address indexed user, uint256 indexed achievementId, uint256 badgeTokenId);
+    event TrackerAuthorized(address indexed tracker, bool authorized);
+    event BadgeContractUpdated(address indexed oldContract, address indexed newContract);
+
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
