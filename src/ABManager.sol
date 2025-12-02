@@ -45,6 +45,18 @@ contract ABManager is Ownable, ReentrancyGuard {
     // Array of all achievement IDs
     uint256[] public allAchievementIds;
 
+    // Mapping from achievement ID to achievement data
+    mapping(uint256 => Achievement) public achievements;
+
+    // Mapping from user to achievement ID to progress
+    mapping(address => mapping(uint256 => uint256)) public userProgress;
+
+    // Mapping from user to achievement ID to completion timestamp
+    mapping(address => mapping(uint256 => uint256)) public userCompletionTime;
+
+    // Mapping to track authorized activity trackers
+    mapping(address => bool) public authorizedTrackers;
+    
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
