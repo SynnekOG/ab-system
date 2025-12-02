@@ -27,4 +27,9 @@ contract ABManager is Ownable, ReentrancyGuard {
         badgeContract = AchievementBadge(_badgeContract);
         emit BadgeContractUpdated(oldContract, _badgeContract);
     }
+
+        function setTrackerAuthorization(address tracker, bool authorized) external onlyOwner {
+        authorizedTrackers[tracker] = authorized;
+        emit TrackerAuthorized(tracker, authorized);
+    }
 }
