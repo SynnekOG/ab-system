@@ -18,6 +18,10 @@ contract ABManager is Ownable, ReentrancyGuard {
         _achievementIdCounter = 1;
     }
 
+    /**
+     * @dev Set the badge contract address
+     * @param _badgeContract Address of the AchievementBadge contract
+     */
         function setBadgeContract(address _badgeContract) external onlyOwner {
         address oldContract = address(badgeContract);
         badgeContract = AchievementBadge(_badgeContract);
