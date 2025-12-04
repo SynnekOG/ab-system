@@ -200,6 +200,11 @@ contract ABManager is Ownable, ReentrancyGuard {
         return false;
     }
 
+    /**
+     * @dev Complete achievement and mint badge
+     * @param user User address
+     * @param achievementId Achievement ID
+     */
         function _completeAchievement(address user, uint256 achievementId) private {
         Achievement storage achievement = achievements[achievementId];
 
