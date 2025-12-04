@@ -145,4 +145,17 @@ contract ABManager is Ownable, ReentrancyGuard {
         emit AchievementCreated(achievementId, name, achievementType);
         return achievementId;
     }
+
+        function updateProgress(address user, uint256 achievementId, uint256 progress) external onlyAuthorizedTracker {
+        require(achievements[achievementId].isActive, "AchievementManager: achievement not active");
+        require(!badgeContract.hasUserEarnedAchievement(user, achievementId), "AchievementManager: already earned");
+
+        userProgress[user][achievementId] = progress;
+        emit ProgressUpdated(user, achievementId, progress);
+
+        // Check if achievement is completed
+        if (_checkAchievementCompletion(user, achievementId)) {
+            _completeAchievement(user, achievementId);
+        }
+    }
 }
