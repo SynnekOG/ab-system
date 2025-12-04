@@ -69,7 +69,7 @@ contract ABManager is Ownable, ReentrancyGuard {
         require(authorizedTrackers[msg.sender], "AchievementManager: caller is not authorized tracker");
         _;
     }
-    
+
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
@@ -88,5 +88,49 @@ contract ABManager is Ownable, ReentrancyGuard {
     function setTrackerAuthorization(address tracker, bool authorized) external onlyOwner {
         authorizedTrackers[tracker] = authorized;
         emit TrackerAuthorized(tracker, authorized);
+    }
+
+        function createAchievement(
+        string memory name,
+        string memory description,
+        AchievementType achievementType,
+        address[] memory requiredTrackers,
+        uint256[] memory thresholds,
+        uint256 timeLimit,
+        uint8 rarity,
+        bool soulbound,
+        uint256 maxEarners
+    ) external onlyOwner returns (uint256) {
+        require(bytes(name).length > 0, "AchievementManager: name cannot be empty");
+        require(rarity >= 1 && rarity <= 4, "AchievementManager: invalid rarity");
+        require(requiredTrackers.length > 0, "AchievementManager: must have at least one tracker");
+
+        // Validate all trackers are authorized
+        for (uint256 i = 0; i < requiredTrackers.length; i++) {
+            require(authorizedTrackers[requiredTrackers[i]], "AchievementManager: tracker not authorized");
+        }
+
+        _achievementIdCounter++;
+        uint256 achievementId = _achievementIdCounter;
+
+        achievements[achievementId] = Achievement({
+            id: achievementId,
+            name: name,
+            description: description,
+            achievementType: achievementType,
+            requiredTrackers: requiredTrackers,
+            thresholds: thresholds,
+            timeLimit: timeLimit,
+            rarity: rarity,
+            isActive: true,
+            soulbound: soulbound,
+            maxEarners: maxEarners,
+            currentEarners: 0
+        });
+
+        allAchievementIds.push(achievementId);
+
+        emit AchievementCreated(achievementId, name, achievementType);
+        return achievementId;
     }
 }
