@@ -102,7 +102,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param soulbound Whether the badge should be soul-bound
      * @param maxEarners Maximum number of users who can earn (0 for unlimited)
      */
-        function createAchievement(
+    function createAchievement(
         string memory name,
         string memory description,
         AchievementType achievementType,
