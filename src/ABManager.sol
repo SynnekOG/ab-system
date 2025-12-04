@@ -199,4 +199,19 @@ contract ABManager is Ownable, ReentrancyGuard {
 
         return false;
     }
+
+        function _completeAchievement(address user, uint256 achievementId) private {
+        Achievement storage achievement = achievements[achievementId];
+
+        // Mint badge
+        uint256 tokenId = badgeContract.mintBadge(
+            user, achievementId, achievement.name, achievement.description, achievement.rarity, achievement.soulbound
+        );
+
+        // Update completion tracking
+        userCompletionTime[user][achievementId] = block.timestamp;
+        achievement.currentEarners++;
+
+        emit AchievementCompleted(user, achievementId, tokenId);
+    }
 }
