@@ -152,16 +152,51 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param achievementId Achievement ID
      * @param progress New progress value
      */
-    //     function updateProgress(address user, uint256 achievementId, uint256 progress) external onlyAuthorizedTracker {
-    //     require(achievements[achievementId].isActive, "AchievementManager: achievement not active");
-    //     require(!badgeContract.hasUserEarnedAchievement(user, achievementId), "AchievementManager: already earned");
+        function updateProgress(address user, uint256 achievementId, uint256 progress) external onlyAuthorizedTracker {
+        require(achievements[achievementId].isActive, "AchievementManager: achievement not active");
+        require(!badgeContract.hasUserEarnedAchievement(user, achievementId), "AchievementManager: already earned");
 
-    //     userProgress[user][achievementId] = progress;
-    //     emit ProgressUpdated(user, achievementId, progress);
+        userProgress[user][achievementId] = progress;
+        emit ProgressUpdated(user, achievementId, progress);
 
-    //     // Check if achievement is completed
-    //     if (_checkAchievementCompletion(user, achievementId)) {
-    //         _completeAchievement(user, achievementId);
-    //     }
-    // }
+        // Check if achievement is completed
+        if (_checkAchievementCompletion(user, achievementId)) {
+            _completeAchievement(user, achievementId);
+        }
+    }
+
+    function _checkAchievementCompletion(address user, uint256 achievementId) private view returns (bool) {
+        Achievement memory achievement = achievements[achievementId];
+
+        // Check if max earners limit reached
+        if (achievement.maxEarners > 0 && achievement.currentEarners >= achievement.maxEarners) {
+            return false;
+        }
+
+        // Check time limit
+        if (achievement.timeLimit > 0) {
+            uint256 startTime = userCompletionTime[user][achievementId];
+            if (startTime == 0) startTime = block.timestamp;
+            if (block.timestamp > startTime + achievement.timeLimit) {
+                return false;
+            }
+        }
+
+        // Check progress against thresholds based on achievement type
+        if (
+            achievement.achievementType == AchievementType.ACTIVITY_COUNT
+                || achievement.achievementType == AchievementType.VALUE_THRESHOLD
+                || achievement.achievementType == AchievementType.STREAK
+        ) {
+            // For these types, check if progress meets the first threshold
+            if (achievement.thresholds.length > 0) {
+                return userProgress[user][achievementId] >= achievement.thresholds[0];
+            }
+        }
+
+        // For COMBO and TIME_BASED, implement custom logic
+        // This can be extended based on specific requirements
+
+        return false;
+    }
 }
