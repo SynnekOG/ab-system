@@ -65,6 +65,11 @@ contract ABManager is Ownable, ReentrancyGuard {
     event TrackerAuthorized(address indexed tracker, bool authorized);
     event BadgeContractUpdated(address indexed oldContract, address indexed newContract);
 
+    modifier onlyAuthorizedTracker() {
+        require(authorizedTrackers[msg.sender], "AchievementManager: caller is not authorized tracker");
+        _;
+    }
+    
     constructor() Ownable(msg.sender) {
         // Start achievement IDs at 1
         _achievementIdCounter = 1;
