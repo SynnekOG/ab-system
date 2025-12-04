@@ -152,7 +152,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param achievementId Achievement ID
      * @param progress New progress value
      */
-        function updateProgress(address user, uint256 achievementId, uint256 progress) external onlyAuthorizedTracker {
+    function updateProgress(address user, uint256 achievementId, uint256 progress) external onlyAuthorizedTracker {
         require(achievements[achievementId].isActive, "AchievementManager: achievement not active");
         require(!badgeContract.hasUserEarnedAchievement(user, achievementId), "AchievementManager: already earned");
 
@@ -211,7 +211,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param user User address
      * @param achievementId Achievement ID
      */
-        function _completeAchievement(address user, uint256 achievementId) private {
+    function _completeAchievement(address user, uint256 achievementId) private {
         Achievement storage achievement = achievements[achievementId];
 
         // Mint badge
