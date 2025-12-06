@@ -225,4 +225,8 @@ contract ABManager is Ownable, ReentrancyGuard {
 
         emit AchievementCompleted(user, achievementId, tokenId);
     }
+
+        function getAllAchievementIds() external view returns (uint256[] memory) {
+        return allAchievementIds;
+    }
 }
