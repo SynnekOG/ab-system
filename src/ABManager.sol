@@ -243,6 +243,12 @@ contract ABManager is Ownable, ReentrancyGuard {
         return achievements[achievementId];
     }
 
+    /**
+     * @dev Get user progress for an achievement
+     * @param user User address
+     * @param achievementId Achievement ID
+     * @return Current progress value
+     */
         function getUserProgress(address user, uint256 achievementId) external view returns (uint256) {
         return userProgress[user][achievementId];
     }
