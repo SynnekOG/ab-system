@@ -225,4 +225,41 @@ contract ABManager is Ownable, ReentrancyGuard {
 
         emit AchievementCompleted(user, achievementId, tokenId);
     }
+
+    /**
+     * @dev Get all achievement IDs
+     * @return Array of all achievement IDs
+     */
+        function getAllAchievementIds() external view returns (uint256[] memory) {
+        return allAchievementIds;
+    }
+
+    /**
+     * @dev Get achievement details
+     * @param achievementId Achievement ID
+     * @return Achievement struct
+     */
+        function getAchievement(uint256 achievementId) external view returns (Achievement memory) {
+        return achievements[achievementId];
+    }
+
+    /**
+     * @dev Get user progress for an achievement
+     * @param user User address
+     * @param achievementId Achievement ID
+     * @return Current progress value
+     */
+        function getUserProgress(address user, uint256 achievementId) external view returns (uint256) {
+        return userProgress[user][achievementId];
+    }
+
+    /**
+     * @dev Toggle achievement active status
+     * @param achievementId Achievement ID
+     * @param isActive New active status
+     */
+        function setAchievementActive(uint256 achievementId, bool isActive) external onlyOwner {
+        achievements[achievementId].isActive = isActive;
+        emit AchievementUpdated(achievementId);
+    }
 }
