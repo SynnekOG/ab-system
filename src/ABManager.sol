@@ -230,7 +230,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @dev Get all achievement IDs
      * @return Array of all achievement IDs
      */
-        function getAllAchievementIds() external view returns (uint256[] memory) {
+    function getAllAchievementIds() external view returns (uint256[] memory) {
         return allAchievementIds;
     }
 
@@ -239,7 +239,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param achievementId Achievement ID
      * @return Achievement struct
      */
-        function getAchievement(uint256 achievementId) external view returns (Achievement memory) {
+    function getAchievement(uint256 achievementId) external view returns (Achievement memory) {
         return achievements[achievementId];
     }
 
@@ -249,7 +249,7 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param achievementId Achievement ID
      * @return Current progress value
      */
-        function getUserProgress(address user, uint256 achievementId) external view returns (uint256) {
+    function getUserProgress(address user, uint256 achievementId) external view returns (uint256) {
         return userProgress[user][achievementId];
     }
 
@@ -258,8 +258,18 @@ contract ABManager is Ownable, ReentrancyGuard {
      * @param achievementId Achievement ID
      * @param isActive New active status
      */
-        function setAchievementActive(uint256 achievementId, bool isActive) external onlyOwner {
+    function setAchievementActive(uint256 achievementId, bool isActive) external onlyOwner {
         achievements[achievementId].isActive = isActive;
+        emit AchievementUpdated(achievementId);
+    }
+
+    /**
+     * @dev Update achievement thresholds
+     * @param achievementId Achievement ID
+     * @param newThresholds New threshold values
+     */
+    function updateAchievementThresholds(uint256 achievementId, uint256[] memory newThresholds) external onlyOwner {
+        achievements[achievementId].thresholds = newThresholds;
         emit AchievementUpdated(achievementId);
     }
 }
