@@ -8,3 +8,4 @@ TestABContract Deployments:
 - 0x66697EC71C161c846FD06a20ABd8B3a90d66234f
 
 - 0x408dc32a365F6E2fBDF203F8FA650030a4835d2e (New Prod Deployment_)
+- `0xD93c7ACaaeef4AcfaB170d8D927CfA7112DC996B` (Celo Prod Deployment)
