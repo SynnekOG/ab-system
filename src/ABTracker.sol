@@ -5,4 +5,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "./interface/IActivityTracker.sol";
 
+/**
+ * @title ABTracker
+ * @dev Tracks DeFi-related activities like swaps, liquidity provision, lending, etc.
+ */
 contract ABTracker {}
