@@ -9,4 +9,7 @@ import "./interface/IActivityTracker.sol";
  * @title ABTracker
  * @dev Tracks DeFi-related activities like swaps, liquidity provision, lending, etc.
  */
-contract ABTracker {}
+contract ABTracker {
+        // Activity type constants
+    bytes32 public constant SWAP = keccak256("SWAP");
+}
