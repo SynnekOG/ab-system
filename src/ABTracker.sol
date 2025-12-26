@@ -13,5 +13,6 @@ contract ABTracker {
         // Activity type constants
     bytes32 public constant SWAP = keccak256("SWAP");
         bytes32 public constant LIQUIDITY_ADD = keccak256("LIQUIDITY_ADD");
+    bytes32 public constant LIQUIDITY_REMOVE = keccak256("LIQUIDITY_REMOVE");
 
 }
