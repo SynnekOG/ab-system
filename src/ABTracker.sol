@@ -12,4 +12,6 @@ import "./interface/IActivityTracker.sol";
 contract ABTracker {
         // Activity type constants
     bytes32 public constant SWAP = keccak256("SWAP");
+        bytes32 public constant LIQUIDITY_ADD = keccak256("LIQUIDITY_ADD");
+
 }
