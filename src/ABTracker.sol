@@ -15,4 +15,6 @@ contract ABTracker {
     bytes32 public constant LIQUIDITY_ADD = keccak256("LIQUIDITY_ADD");
     bytes32 public constant LIQUIDITY_REMOVE = keccak256("LIQUIDITY_REMOVE");
     bytes32 public constant LENDING = keccak256("LENDING");
+        bytes32 public constant BORROWING = keccak256("BORROWING");
+
 }
