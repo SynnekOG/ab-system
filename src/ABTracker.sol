@@ -18,5 +18,6 @@ contract ABTracker {
         bytes32 public constant BORROWING = keccak256("BORROWING");
     bytes32 public constant STAKING = keccak256("STAKING");
     bytes32 public constant YIELD_FARMING = keccak256("YIELD_FARMING");
+    bytes32 public constant NFT_TRADE = keccak256("NFT_TRADE");
 
 }
