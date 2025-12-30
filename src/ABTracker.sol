@@ -17,5 +17,6 @@ contract ABTracker {
     bytes32 public constant LENDING = keccak256("LENDING");
         bytes32 public constant BORROWING = keccak256("BORROWING");
     bytes32 public constant STAKING = keccak256("STAKING");
+    bytes32 public constant YIELD_FARMING = keccak256("YIELD_FARMING");
 
 }
