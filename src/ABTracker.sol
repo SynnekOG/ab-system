@@ -19,4 +19,14 @@ contract ABTracker {
     bytes32 public constant STAKING = keccak256("STAKING");
     bytes32 public constant YIELD_FARMING = keccak256("YIELD_FARMING");
     bytes32 public constant NFT_TRADE = keccak256("NFT_TRADE");
+
+    // User activity statistics
+    struct UserActivity {
+        uint256 totalCount;
+        uint256 totalValue;
+        uint256 currentStreak;
+        uint256 lastActivityDate; // Date in days since epoch
+        uint256 lastActivityTimestamp;
+        mapping(uint256 => bool) activeDays; // Track active days for streak calculation
+    }
 }
