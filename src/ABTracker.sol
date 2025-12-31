@@ -30,7 +30,6 @@ contract ABTracker {
         mapping(uint256 => bool) activeDays; // Track active days for streak calculation
     }
 
-        // Nested mapping: user => activityType => UserActivity
+    // Nested mapping: user => activityType => UserActivity
     mapping(address => mapping(bytes32 => UserActivity)) private userActivities;
-
 }
