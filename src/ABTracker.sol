@@ -30,6 +30,14 @@ contract ABTracker {
         mapping(uint256 => bool) activeDays; // Track active days for streak calculation
     }
 
+       struct ActivityRecord {
+        bytes32 activityType;
+        uint256 value;
+        uint256 timestamp;
+        address user;
+        string metadata;
+    }
+
     // Nested mapping: user => activityType => UserActivity
     mapping(address => mapping(bytes32 => UserActivity)) private userActivities;
 }
