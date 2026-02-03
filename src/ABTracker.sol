@@ -49,4 +49,5 @@ contract ABTracker {
     mapping(address => bytes32[]) private userActivityTypes;
     ActivityRecord[] private activityHistory;
     mapping(bytes32 => ActivityConfig) public activityConfigs;
+    mapping(address => bool) public authorizedRecorders;
 }
