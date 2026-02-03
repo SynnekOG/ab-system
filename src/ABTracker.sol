@@ -30,7 +30,7 @@ contract ABTracker {
         mapping(uint256 => bool) activeDays; // Track active days for streak calculation
     }
 
-       struct ActivityRecord {
+    struct ActivityRecord {
         bytes32 activityType;
         uint256 value;
         uint256 timestamp;
@@ -38,7 +38,7 @@ contract ABTracker {
         string metadata;
     }
 
-       struct ActivityConfig {
+    struct ActivityConfig {
         bool enabled;
         uint256 minValue;
         uint256 pointsMultiplier;
