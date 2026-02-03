@@ -38,6 +38,12 @@ contract ABTracker {
         string metadata;
     }
 
+       struct ActivityConfig {
+        bool enabled;
+        uint256 minValue;
+        uint256 pointsMultiplier;
+    }
+
     // Nested mapping: user => activityType => UserActivity
     mapping(address => mapping(bytes32 => UserActivity)) private userActivities;
 }
