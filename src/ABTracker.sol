@@ -47,4 +47,5 @@ contract ABTracker {
     // Nested mapping: user => activityType => UserActivity
     mapping(address => mapping(bytes32 => UserActivity)) private userActivities;
     mapping(address => bytes32[]) private userActivityTypes;
+    ActivityRecord[] private activityHistory;
 }
