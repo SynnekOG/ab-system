@@ -53,4 +53,5 @@ contract ABTracker {
     uint256 public totalUsers;
     mapping(address => bool) private userCounted;
     mapping(bytes32 => uint256) public globalActivityCount;
+    mapping(bytes32 => uint256) public globalActivityValue;
 }
