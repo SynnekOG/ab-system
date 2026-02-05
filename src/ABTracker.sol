@@ -50,4 +50,11 @@ contract ABTracker {
     ActivityRecord[] private activityHistory;
     mapping(bytes32 => ActivityConfig) public activityConfigs;
     mapping(address => bool) public authorizedRecorders;
+    uint256 public totalUsers;
+    mapping(address => bool) private userCounted;
+    mapping(bytes32 => uint256) public globalActivityCount;
+    mapping(bytes32 => uint256) public globalActivityValue;
+    mapping(address => uint256) public userPoints;
+    mapping(address => uint256) public userLevel;
+    uint256 public maxHistorySize = 10000;
 }
