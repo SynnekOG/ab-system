@@ -56,4 +56,5 @@ contract ABTracker {
     mapping(bytes32 => uint256) public globalActivityValue;
     mapping(address => uint256) public userPoints;
     mapping(address => uint256) public userLevel;
+    uint256 public maxHistorySize = 10000;
 }
