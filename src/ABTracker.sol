@@ -63,5 +63,6 @@ contract ABTracker {
     event ActivityRecorded(address indexed user, bytes32 indexed activityType, uint256 value, uint256 timestamp, uint256 currentStreak);
     event StreakUpdated(address indexed user, bytes32 indexed activityType, uint256 newStreak, uint256 longestStreak);
     event PointsAwarded(address indexed user, bytes32 indexed activityType, uint256 points, uint256 totalPoints);
+    event LevelUp(address indexed user, uint256 newLevel, uint256 totalPoints);
     
 }
