@@ -65,5 +65,5 @@ contract ABTracker {
     event PointsAwarded(address indexed user, bytes32 indexed activityType, uint256 points, uint256 totalPoints);
     event LevelUp(address indexed user, uint256 newLevel, uint256 totalPoints);
     event ActivityConfigUpdated(bytes32 indexed activityType, bool enabled, uint256 minValue, uint256 pointsMultiplier);
-    
+    event RecorderAuthorizationChanged(address indexed recorder, bool authorized);
 }
