@@ -57,4 +57,9 @@ contract ABTracker {
     mapping(address => uint256) public userPoints;
     mapping(address => uint256) public userLevel;
     uint256 public maxHistorySize = 10000;
+    
+        // ============ Events ============
+
+    event ActivityRecorded(address indexed user, bytes32 indexed activityType, uint256 value, uint256 timestamp, uint256 currentStreak);
+    
 }
