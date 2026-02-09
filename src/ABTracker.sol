@@ -57,4 +57,15 @@ contract ABTracker {
     mapping(address => uint256) public userPoints;
     mapping(address => uint256) public userLevel;
     uint256 public maxHistorySize = 10000;
+
+    // ============ Events ============
+
+    event ActivityRecorded(
+        address indexed user, bytes32 indexed activityType, uint256 value, uint256 timestamp, uint256 currentStreak
+    );
+    event StreakUpdated(address indexed user, bytes32 indexed activityType, uint256 newStreak, uint256 longestStreak);
+    event PointsAwarded(address indexed user, bytes32 indexed activityType, uint256 points, uint256 totalPoints);
+    event LevelUp(address indexed user, uint256 newLevel, uint256 totalPoints);
+    event ActivityConfigUpdated(bytes32 indexed activityType, bool enabled, uint256 minValue, uint256 pointsMultiplier);
+    event RecorderAuthorizationChanged(address indexed recorder, bool authorized);
 }
